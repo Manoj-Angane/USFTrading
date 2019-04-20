@@ -1,0 +1,72 @@
+﻿@model IEnumerable<USFTrading.Models.Company>
+<h2>Home</h2>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Symbol
+            </th>
+            <th>
+                Company Name
+            </th>
+            <th>
+                Exchange
+            </th>
+            <th>
+                Industry
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                CEO
+            </th>
+            <th>
+                Sector
+            </th>
+            <th>
+                Gainer/Loser
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.symbol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.companyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.exchange)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.industry)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sector)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gainer_Loser)
+            </td>
+        </tr>
+        }
+        <tr>
+            <td>
+                <a id="dbopt" asp-controller="Home" asp-action="PopulateCompany"><img src="~/images/button_save-data.png" /></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script>
+    alertDbSave(@ViewBag.dbSuccessComp);
+</script>

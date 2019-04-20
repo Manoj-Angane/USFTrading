@@ -1,0 +1,60 @@
+﻿@model IEnumerable<USFTrading.Models.Stock>
+<h2>Details of Top Gainers</h2>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Symbol
+            </th>
+            <th>
+                Closing Price
+            </th>
+            <th>
+                Previous Close
+            </th>
+            <th>
+                Change
+            </th>
+            <th>
+                Change Percentage
+            </th>
+            <th>
+                Market Capital
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.symbol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.close)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.previousClose)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.change)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.changePercent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.marketCap)
+            </td>
+        </tr>
+        }
+        <tr>
+            <td>
+                <a id="dbopt" asp-controller="Home" asp-action="PopulateStock"><img src="~/images/button_save-data.png" /></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script>
+    alertDbSave(@ViewBag.dbSuccessComp);
+</script>

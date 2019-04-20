@@ -1,0 +1,44 @@
+﻿@model IEnumerable<USFTrading.Models.Sectors>
+<h2>Sector Analysis</h2>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th>
+                Name
+            </th>
+            <th>
+                Performance
+            </th>
+            <th>
+                Last Updated
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.performance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.time)
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+                <a id="dbopt" asp-controller="Home" asp-action="PopulateSector"><img src="~/images/button_save-data.png" /></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script>
+    alertDbSave(@ViewBag.dbSuccessComp);
+</script>

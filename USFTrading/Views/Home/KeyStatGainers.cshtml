@@ -1,0 +1,72 @@
+﻿@model IEnumerable<USFTrading.Models.KeyStatGainers>
+<h2>Key Stats</h2>
+<hr />
+<table class="table">
+    <thead>
+        <tr>           
+            <th>
+                Symbol
+            </th>
+            <th>
+                Market Capital
+            </th>
+            <th>
+                Week 52 High
+            </th>
+			<th>
+                Week 52 Low
+            </th>
+            <th>
+                Week 52 Change
+            </th>
+            <th>
+                Trailing Twelve Month EPS
+            </th>
+			<th>
+                Trailing Twelve Month Dividend Rate
+            </th>
+			<th>
+                Price to earnings Ratio
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.symbol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.marketcap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.week52high)
+                </td>
+				<td>
+                    @Html.DisplayFor(modelItem => item.week52low)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.week52change)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ttmEPS)
+                </td>
+				<td>
+                    @Html.DisplayFor(modelItem => item.ttmDividendRate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.peRatio)
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+                <a id="dbopt" asp-controller="Home" asp-action="PopulateKeyStatGainers"><img src="~/images/button_save-data.png" /></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script>
+    alertDbSave(@ViewBag.dbSuccessComp);
+</script>

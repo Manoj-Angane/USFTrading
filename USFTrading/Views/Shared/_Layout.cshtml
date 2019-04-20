@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - USFTrading</title>
+    <title>@ViewData["Title"] - USF Trading</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -26,12 +26,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">USFTrading</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">USF Trading</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Company">Company</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="SectorAnalysis">SectorAnalysis</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="KeyStatGainers">KeyStatGainers</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="KeyStatLosers">KeyStatLosers</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="TopStock">TopStock</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="AboutUs">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>
             </div>
@@ -44,7 +49,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2019 - USFTrading</p>
+            <p>&copy; 2019 - USF Trading</p>
         </footer>
     </div>
 
