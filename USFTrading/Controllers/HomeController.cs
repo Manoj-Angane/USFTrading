@@ -171,19 +171,27 @@ namespace USFTrading.Controllers
 
         public IActionResult PopulateKeyStatLosers()
         {
-            List<KeyStatLosers> sector = JsonConvert.DeserializeObject<List<KeyStatLosers>>(TempData["KeyStatLosers"].ToString());
-            foreach (KeyStatLosers sect in sector)
+            List<KeyStatLosers> sector=new List<KeyStatLosers>();
+            if (TempData["KeyStatLosers"] != null)
             {
-                //Database will give PK constraint violation error when trying to insert record with existing PK.
-                //So add company only if it doesnt exist, check existence using symbol (PK)
-                if (dbContext.KeyStatLosers.Where(c => c.symbol.Equals(sect.symbol)).Count() == 0)
+                sector = JsonConvert.DeserializeObject<List<KeyStatLosers>>(TempData["KeyStatLosers"].ToString());
+                foreach (KeyStatLosers sect in sector)
                 {
-                    dbContext.KeyStatLosers.Add(sect);
+                    //Database will give PK constraint violation error when trying to insert record with existing PK.
+                    //So add company only if it doesnt exist, check existence using symbol (PK)
+                    if (dbContext.KeyStatLosers.Where(c => c.symbol.Equals(sect.symbol)).Count() == 0)
+                    {
+                        dbContext.KeyStatLosers.Add(sect);
+                    }
                 }
+                dbContext.SaveChanges();
+                ViewBag.dbSuccessComp = 1;
+                return View("KeyStatLosers", sector);
             }
-            dbContext.SaveChanges();
-            ViewBag.dbSuccessComp = 1;
-            return View("KeyStatLosers", sector);
+            else
+            {
+                return View("Index");
+            }
         }
 
 

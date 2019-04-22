@@ -10,7 +10,7 @@ using USFTrading.DataAccess;
 namespace USFTrading.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190420224200_IntialCreated")]
+    [Migration("20190422050659_IntialCreated")]
     partial class IntialCreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
