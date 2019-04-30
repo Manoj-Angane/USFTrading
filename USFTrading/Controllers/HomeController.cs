@@ -119,23 +119,31 @@ namespace USFTrading.Controllers
         //**********************Populating Table**********************
         public IActionResult PopulateCompany()
         {
-            List<Company> companies = JsonConvert.DeserializeObject<List<Company>>(TempData["Company"].ToString());
-            foreach (Company company in companies)
+            List<Company> companies = new List<Company>();
+            if (TempData["Company"] != null)
             {
-                //Database will give PK constraint violation error when trying to insert record with existing PK.
-                //So add company only if it doesnt exist, check existence using symbol (PK)
-                if (dbContext.Company.Where(c => c.symbol.Equals(company.symbol)).Count() == 0)
+                companies = JsonConvert.DeserializeObject<List<Company>>(TempData["Company"].ToString());
+                foreach (Company company in companies)
                 {
-                    dbContext.Company.Add(company);
+                    //Database will give PK constraint violation error when trying to insert record with existing PK.
+                    //So add company only if it doesnt exist, check existence using symbol (PK)
+                    if (dbContext.Company.Where(c => c.symbol.Equals(company.symbol)).Count() == 0)
+                    {
+                        dbContext.Company.Add(company);
+                    }
                 }
+                dbContext.SaveChanges();
+                ViewBag.dbSuccessComp = 1;
+                return View("Company", companies);
             }
-            dbContext.SaveChanges();
-            ViewBag.dbSuccessComp = 1;
-            return View("Company", companies);
+            else
+            {
+                return View("Index");
+            }
         }
-		
-		
-		        public IActionResult PopulateSector()
+
+
+        public IActionResult PopulateSector()
         {
             List<Sectors> sector = JsonConvert.DeserializeObject<List<Sectors>>(TempData["Sectors"].ToString());
             foreach (Sectors sect in sector)
